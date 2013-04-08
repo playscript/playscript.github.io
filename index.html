@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Playscript.github.io by playscript</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Playscript.github.io</h1>
+        <p>Pages for playscript repo.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/playscript" class="button fork"><strong>View On GitHub</strong></a>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <p><img src="https://raw.github.com/playscript/playscript-mono/master/PlayscriptLogo.png" alt="logo"></p>
+
+<h1>PLAYSCRIPT</h1>
+
+<h2>What is PlayScript?</h2>
+
+<p>PlayScript is an open source Adobe ActionScript compatible compiler and Flash compatible runtime that runs in the Mono .NET environment, targeting mobile devices through the Xamarin Studio MonoTouch and Mono for Android platforms.   With a combination of Adobe FlashBuilder for Web and Xamarin Studio for mobile complex large scale cross-mobile-web projects can be developed with full IDE, source debugging and intellisense support on all platforms, with access to the full native mobile API's on the mobile platform.</p>
+
+<p>The PlayScript compiler also targets both C++ and JavaScript (similar to the Haxe compiler) allowing ActionScript code to be run via JavaScript on the Web, or natively on PC and mobile (with some limitations).  (NOTE: Presently the JS and C++ targets are at an experimental stage)</p>
+
+<p>In addition to accurate ActionScript language support, the PlayScript compiler also supports a new language - PlayScript - which is derived from both C# and ActionScript.  This new language supports all of the features of C#, including generics, properties, events, value types, operator overloading, async programming, linq, while at the same time being upwards compatible with ActionScript.  The PlayScript language can be used to target both web and mobile (via Xamarin and JavaScript), and existing Flash code can easily be converted to PlayScript code by simply renaming files from .as to .play, and fixing a few issues related to the stricter syntax and semantics of the PlayScript language.</p>
+
+<p>Finally, the PlayScript runtime supports a full Stage3D compatible implementation of the Flash runtime allowing games that are Stage3D compliant to run with very minor modifications on mobile via the Xamarin/Mono runtime.  A subset of the "display" library is implemented to support Stage3D libraries such as Starling, Away3D, and Feathers, though there are no plans at the present time to implement the full Flash display system.  </p>
+
+<p>The PlayScript compiler and runtime provides a complete toolset for building and running ActionScript based games on mobile via the Xamarin Mono runtime, on the web via Adobe Flash or JavaScript/HTML5.</p>
+
+<h1>How is PlayScript Implemented?</h1>
+
+<p>The PlayScript compiler is implemented as an additional front end to the Mono MCS compiler.   Installing the PlayScript version of the Mono framework allows you to compile, with the MCS compiler all three langauges: C#, ActionScript, and PlayScript simply by adding files with .cs, .as, and .play file extensions to the MCS command line.</p>
+
+<p>Likewise with the Xamarin Studio IDE, pointing the Xamarin Studio ".NET Frameworks" preferences page selection to the PlayScript Mono framework allows you to simply add .as or .play files to any C# project, and compile them directly into your MonoTouch or Mono for Android project.  You can then compile ActionScript or PlayScript code and debug it on the device just as you would any C# code.  ActionScript code can directly call C# code, and vice versa.</p>
+
+<h1>How is the Stage3D Flash Runtime Implemented?</h1>
+
+<p>PlayScript includes two libraries: PlayScript.Dynamic_aot.dll, and pscorlib.dll, which implement the basic flash runtime and Stage3D over OpenGL.  Referencing these libraries (or the Monotouch or Mono for Android versions of them) in your project in Xamarin Studio allows you to run existing Flash Stage3D code with no modifications.  (NOTE: A stubbed version of the flash "display" library is included, but is non functional except for various functionality in Bitmap, BitmapData, and TextField).</p>
+
+<h1>Current Status</h1>
+
+<p>The PlayScript and ActionScript compiler front ends are fairly stable at this point (given that they are built on top of the very mature Mono compiler and runtime), but there are still several ActionScript language features that are not fully implemented, and certain constructs that are not parsed or compiled as they are in ActionScript.  Work is ongoing to eliminate these last remaining issues and deliver full ActionScript compatibility.</p>
+
+<h3>ActionScript support</h3>
+
+<ol>
+<li>Dynamic classes are compiled but are not implemented yet.</li>
+<li>The [Embed] tag is not yet implemented.</li>
+<li>The singleton guard pattern is not supported (using a private parameter to a public constructor).</li>
+<li>Static and non static members of the same name are not supported.</li>
+<li>Class and package level statements are not supported.</li>
+<li>Variety of small bugs which require minor work arounds (these are being eliminated over time).</li>
+</ol><h3>PlayScript support</h3>
+
+<ol>
+<li>Unsafe code is not supported (conflict with the use of the * symbol in ActionScript).</li>
+<li>Some issues with multi dimensional arrays.</li>
+<li>JavaScript and C++ targets are experimental.</li>
+</ol><h3>Runtime support</h3>
+
+<ol>
+<li>Much work has been done on the Stage3D library support, and full AGAL to HLSL support has been implemented.</li>
+<li>Starling and Away3D libraries are functional and most features are supported.</li>
+<li>Very little work has been done on net, and other core libraries.</li>
+</ol><h1>How do I install PlayScript?</h1>
+
+<p>PlayScript is simply part of the regular Mono build and the MCS compiler build by Mono will compile ActionScript and PlayScript .as and .play files.</p>
+
+<p>See the MONO build instructions below.</p>
+
+<p>Mac:</p>
+
+<p><a href="http://www.mono-project.com/Compiling_Mono_on_OSX">http://www.mono-project.com/Compiling_Mono_on_OSX</a></p>
+
+<p>Windows:</p>
+
+<p><a href="http://www.mono-project.com/Compiling_Mono_on_Windows">http://www.mono-project.com/Compiling_Mono_on_Windows</a></p>
+
+<p>Also, the base pscorlib.dll and PlayScript.Dynamic.dll runtime libraries (minus Stage3D support) will be pre-built and added to the GAC gache in the final mono install.  To use the "monotouch" or "monomac" or "monoandroid" versions of these libraries, use the included .csproj files in the mcs/class folder in this repository.</p>
+
+<h1>How do I use PlayScript from Xamarin Studio?</h1>
+
+<ol>
+<li>Build the Mono framework from this repo using the Mono build instructions.   Use --prefix=/Users/myname/playscript-mono-inst to install the framework to a reasonable location on your hard disk.</li>
+<li>Open Xamarin Studio, and select Preferences..</li>
+<li>Select the .NET runtimes tab.</li>
+<li>Click the "Add" button, and select the folder where you build the PlayScript mono framework from step 1.</li>
+<li>Click the "Set as Default" button.</li>
+<li>Exit Xamarin Studio, then restart.</li>
+</ol><p>You should now be able to add .as files and .play files to your projects and compile them.  Note that you must make sure the file is toggled to compile by selecting the "Properties" panel in Xamarin Studio and setting the "Build Action" to compile.</p>
+
+<p>(NOTE: A modified version of MonoDevelop should be available in the playscript-monodevelop repository that includes full support - including syntax highlighting for both .as and .play files.)</p>
+
+<h2>Features:</h2>
+
+<h4>Native Performance</h4>
+
+<ul>
+<li>Using "unsafe" code.</li>
+<li>Direct interop with native code (Cocos2D-X, other C++ based engines such as Page44, etc).</li>
+<li>Optimized compiler for JavaScript generation.</li>
+<li>Optional full C++ target with minimal app size and startup overhead.</li>
+</ul><h4>Advanced Tools Support</h4>
+
+<ul>
+<li>Complete tool support including Syntax Highlighting and Intellisense in the MonoDevelop IDE.</li>
+<li>Source Debugging on all platforms (FlashBuilder for Flash).</li>
+<li>Fast Release mode compiles and rapid iteration.</li>
+</ul><h4>Full Platform API's</h4>
+
+<ul>
+<li>Complete iOS platform API via Xamarin MonoTouch and Mono for Android</li>
+<li>Complete Windows/MacOSX API's.</li>
+<li>Complete integration with UI builder (iOS), and Android GUI builder via Xamarin Studio.</li>
+</ul><h4>Differences between PlayScript and ActionScript</h4>
+
+<ul>
+<li>PlayScript supports most features of C# 5.</li>
+<li>PlayScript requires semicolons after all statements.</li>
+<li>PlayScript uses block scoping for variables.</li>
+<li>PlayScript requires breaks in switch statements.</li>
+<li>PlayScript supports generics using the .&lt;&gt; syntax introduced in AS3 with the normal C# feature set.</li>
+<li>PlayScript supports properties using the "property" keyword with syntax similar to C#.</li>
+<li>PlayScript supports indexers and operator overloads using the "indexer" and "operator" keywords.</li>
+<li>PlayScript implements AS3 namespaces by converting them to .NET internal.</li>
+</ul><h4>Differences between PlayScript and CSharp</h4>
+
+<ul>
+<li>PlayScript requires the use of the "overload" keyword on addtional overload methods (allows more readable JavaScript code by only mangling overload method names).</li>
+<li>PlayScript does not support using blocks.</li>
+<li>PlayScript does not support checked, unchecked.</li>
+<li>PlayScript does not "presently" support unsafe code (though this will be added in the future).  Currently unsafe code can be added to mobile projects via C#.</li>
+<li>In PlayScript you may not directly access the base properties of Object (ToString(), GetType(), GetHashCode()) unless you cast an object to a System.Object.  Doing this however will make your code incompatible with the C++ or JavaScript target backends.</li>
+</ul><h2>License</h2>
+
+<p>Code contributed to this project by Zynga is released under the Apache open source license.</p>
+
+<h2>PlayScript Sample Code</h2>
+
+<div class="highlight"><pre><span class="c1">// Basic types</span>
+<span class="k">var</span> <span class="nx">b</span><span class="o">:</span><span class="nx">byte</span><span class="o">;</span>
+<span class="k">var</span> <span class="nx">sb</span><span class="o">:</span><span class="nx">sbyte</span><span class="o">;</span>
+<span class="k">var</span> <span class="nx">s</span><span class="o">:</span><span class="nx">short</span><span class="o">;</span>
+<span class="k">var</span> <span class="nx">us</span><span class="o">:</span><span class="nx">ushort</span><span class="o">;</span>
+<span class="k">var</span> <span class="nx">i</span><span class="o">:</span><span class="nb">int</span><span class="o">;</span>
+<span class="k">var</span> <span class="nx">u</span><span class="o">:</span><span class="nb">uint</span><span class="o">;</span>
+<span class="k">var</span> <span class="nx">l</span><span class="o">:</span><span class="nx">long</span><span class="o">;</span>
+<span class="k">var</span> <span class="nx">ul</span><span class="o">:</span><span class="nx">ulong</span><span class="o">;</span>
+<span class="k">var</span> <span class="nx">f</span><span class="o">:</span><span class="nx">float</span><span class="o">;</span>
+<span class="k">var</span> <span class="nx">d</span><span class="o">:</span><span class="nx">double</span><span class="o">;</span>
+
+<span class="c1">// Conditional compilation</span>
+<span class="err">#</span><span class="k">if</span> <span class="nx">DEBUG</span>
+<span class="err">#</span><span class="k">else</span>
+<span class="err">#</span><span class="nx">endif</span>
+
+<span class="c1">// Fixed arrays</span>
+<span class="k">var</span> <span class="nx">a</span><span class="o">:</span><span class="nb">int</span><span class="p">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">int</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+
+<span class="c1">// Properties</span>
+<span class="kd">public</span> <span class="nx">property</span> <span class="nx">MyProperty</span><span class="o">:</span><span class="nb">int</span> <span class="p">{</span>
+   <span class="kd">get</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">_myInt</span><span class="o">;</span> <span class="p">}</span>
+   <span class="kd">set</span> <span class="p">{</span> <span class="nx">_myInt</span> <span class="o">=</span> <span class="nx">value</span><span class="o">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Events</span>
+<span class="kd">public</span> <span class="nx">event</span> <span class="nx">MyEvent</span><span class="o">;</span>
+
+<span class="c1">// Delegates</span>
+<span class="kd">public</span> <span class="nx">delegate</span> <span class="nx">MyDelegate</span><span class="p">(</span><span class="nx">i</span><span class="o">:</span><span class="nb">int</span><span class="p">)</span><span class="o">:</span><span class="nx">void</span><span class="o">;</span>
+
+<span class="c1">// Operators</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="nx">operator</span> <span class="o">-</span> <span class="p">(</span><span class="nx">i</span><span class="o">:</span><span class="nb">int</span><span class="o">,</span> <span class="nx">j</span><span class="o">:</span><span class="nb">int</span><span class="p">)</span><span class="o">:</span><span class="nb">int</span> <span class="p">{</span>
+<span class="p">}</span>
+
+<span class="c1">// Indexers</span>
+<span class="kd">public</span> <span class="nx">indexer</span> <span class="k">this</span> <span class="p">(</span><span class="nx">index</span><span class="o">:</span><span class="nb">int</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kd">get</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">_a</span><span class="p">[</span><span class="nx">index</span><span class="p">];</span> <span class="p">}</span>
+   <span class="kd">set</span> <span class="p">{</span> <span class="nx">_a</span><span class="p">[</span><span class="nx">index</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="o">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Generics</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nx">Foo</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="k">var</span> <span class="nx">_f</span><span class="o">:</span><span class="nx">T</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kd">function</span> <span class="nx">foo</span><span class="o">&lt;</span><span class="nx">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">v</span><span class="o">:</span><span class="nx">T</span><span class="p">)</span><span class="o">:</span><span class="nx">void</span> <span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Async</span>
+<span class="nx">async</span> <span class="kd">function</span> <span class="nx">AccessTheWebAsync</span><span class="p">()</span><span class="o">:</span><span class="nx">Task</span><span class="p">.</span><span class="o">&lt;</span><span class="nb">int</span><span class="o">&gt;</span> 
+<span class="p">{</span> 
+    <span class="k">var</span> <span class="nx">client</span><span class="o">:</span><span class="nx">HttpClient</span><span class="o">=</span> <span class="k">new</span> <span class="nx">HttpClient</span><span class="p">();</span>
+    <span class="k">var</span> <span class="nx">getStringTask</span><span class="o">:</span><span class="nx">Task</span><span class="p">.</span><span class="o">&lt;</span><span class="nb">String</span><span class="o">&gt;</span> <span class="o">=</span> <span class="nx">client</span><span class="p">.</span><span class="nx">GetStringAsync</span><span class="p">(</span><span class="s2">"http://msdn.microsoft.com"</span><span class="p">);</span>
+    <span class="k">var</span> <span class="nx">urlContents</span><span class="o">:</span><span class="nb">String</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">getStringTask</span><span class="o">;</span>
+    <span class="k">return</span> <span class="nx">urlContents</span><span class="p">.</span><span class="nx">Length</span><span class="o">;</span>
+<span class="p">}</span>
+
+</pre></div>
+
+<h2>PlayScript Google Group</h2>
+
+<p>Please join the discussion on Google Groups here:</p>
+
+<p><a href="https://groups.google.com/forum/?fromgroups#!forum/playscript">https://groups.google.com/forum/?fromgroups#!forum/playscript</a></p>
+      </section>
+      <footer>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
