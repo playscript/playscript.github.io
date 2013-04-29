@@ -38,9 +38,9 @@
 
 <h2>What is PlayScript?</h2>
 
-<p>PlayScript is an open source Adobe ActionScript compatible compiler and Flash compatible runtime that runs in the Mono .NET environment, targeting mobile devices through the Xamarin Studio MonoTouch and Mono for Android platforms.   With a combination of Adobe FlashBuilder for Web and Xamarin Studio for mobile complex large scale cross-mobile-web projects can be developed with full IDE, source debugging and intellisense support on all platforms, with access to the full native mobile API's on the mobile platform.</p>
+<p>PlayScript is an open source Adobe ActionScript compatible compiler and Flash compatible runtime that runs in the Mono .NET environment, targeting mobile devices through the Xamarin platform.   With a combination of Adobe FlashBuilder for Web and Xamarin Studio for mobile complex large scale cross-mobile-web projects can be developed with full IDE, source debugging and intellisense support on all platforms, with access to the full native mobile API's on the mobile platform.</p>
 
-<p>The PlayScript compiler also targets both C++ and JavaScript (similar to the Haxe compiler) allowing ActionScript code to be run via JavaScript on the Web, or natively on PC and mobile (with some limitations).  (NOTE: Presently the JS and C++ targets are at an experimental stage)</p>
+<p>The PlayScript compiler also targets both C++ and JavaScript (similar to the Haxe compiler) allowing ActionScript code to be run via JavaScript on the Web, or natively on PC and mobile (with some limitations).  (NOTE: Presently the JS and C++ targets are at an experimental stage).</p>
 
 <p>In addition to accurate ActionScript language support, the PlayScript compiler also supports a new language - PlayScript - which is derived from both C# and ActionScript.  This new language supports all of the features of C#, including generics, properties, events, value types, operator overloading, async programming, linq, while at the same time being upwards compatible with ActionScript.  The PlayScript language can be used to target both web and mobile (via Xamarin and JavaScript), and existing Flash code can easily be converted to PlayScript code by simply renaming files from .as to .play, and fixing a few issues related to the stricter syntax and semantics of the PlayScript language.</p>
 
@@ -84,6 +84,16 @@
 <li>Starling and Away3D libraries are functional and most features are supported.</li>
 <li>Very little work has been done on net, and other core libraries.</li>
 </ol><h1>How do I install PlayScript?</h1>
+
+<p>You can download the current PlayScript mono framework binaries here:</p>
+
+<p><a href="https://s3.amazonaws.com/playscript/playscript-mono-osx-0.1.2.dmg">Mac OSX 0.1.2 (Mono 3.0.8)</a></p>
+
+<p><a href="https://s3.amazonaws.com/playscript/playscript-mono-win32-0.1.2.zip">Windows Win32 0.1.2 (Mono 3.0.9)</a></p>
+
+<p>The mono framework folder includes the entire mono SDK, tools, and libraries.  To use the framework, you must install Xamarin Studio, and follow the instructions (below) to set the PlayScript mono framework as the default framework.</p>
+
+<h1>Building From Source</h1>
 
 <p>PlayScript is simply part of the regular Mono build and the MCS compiler build by Mono will compile ActionScript and PlayScript .as and .play files.</p>
 
